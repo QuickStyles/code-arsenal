@@ -1,0 +1,19 @@
+{
+  "name": "oneline",
+  "version": "1.0.0-alpha.1",
+  "description": "A npx package to generate miscellaneous code",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QuickStyles/oneline.git"
+  },
+  "author": "Brandon YW Lam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/QuickStyles/oneline/issues"
+  },
+  "homepage": "https://github.com/QuickStyles/oneline#readme"
+}
