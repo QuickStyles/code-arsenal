@@ -1,8 +1,9 @@
 {
   "name": "code-arsenal",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.3",
   "description": "A npx package to generate miscellaneous code",
   "main": "index.js",
+  "bin": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
