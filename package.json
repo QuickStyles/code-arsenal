@@ -1,5 +1,5 @@
 {
-  "name": "oneline",
+  "name": "code-arsenal",
   "version": "1.0.0-alpha.1",
   "description": "A npx package to generate miscellaneous code",
   "main": "index.js",
