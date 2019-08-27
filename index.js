@@ -58,6 +58,8 @@ async function write() {
   console.log(boilerPlates);
   try {
     if (!boilerPlates.includes(requestedBoilerplate)) {
+      console.info('Available templates:');
+      console.info(boilerPlates.join('\n'));
       throw new Error('boilerplate not found');
     }
     const data = await getBoilerplate();
