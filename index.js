@@ -19,6 +19,15 @@ program.parse(process.argv);
 const requestedBoilerplate = program.generate;
 const writePath = program.path;
 
+if (!requestedBoilerplate || !writePath) {
+  console.error('Missing arguments:');
+  console.table({
+    '--genrate': requestedBoilerplate,
+    '--path': writePath,
+  });
+  process.exit();
+}
+
 let extension = '';
 
 async function getBoilerPlates() {
