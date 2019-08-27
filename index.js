@@ -4,6 +4,7 @@
 const path = require('path');
 const fs = require('fs').promises;
 const commander = require('commander');
+const chalk = require('chalk');
 
 const BOILERPLATES_PATH = path.join(__dirname, 'boilerplates');
 
@@ -20,9 +21,9 @@ const requestedBoilerplate = program.generate;
 const writePath = program.path;
 
 if (!requestedBoilerplate || !writePath) {
-  console.error('Missing arguments:');
+  console.error(chalk.redBright('Missing arguments:'));
   console.table({
-    '--genrate': requestedBoilerplate,
+    '--generate': requestedBoilerplate,
     '--path': writePath,
   });
   process.exit();
@@ -40,7 +41,7 @@ async function getBoilerPlates() {
     });
     return names;
   } catch (error) {
-    throw new Error('Internal Error: Could not get boilerplates. Please try again');
+    throw new Error(chalk.red('Internal Error: Could not get boilerplates. Please try again'));
   }
 }
 
@@ -55,11 +56,10 @@ function writeBoilerplate(data) {
 
 async function write() {
   const boilerPlates = await getBoilerPlates();
-  console.log(boilerPlates);
   try {
     if (!boilerPlates.includes(requestedBoilerplate)) {
       console.info('Available templates:');
-      console.info(boilerPlates.join('\n'));
+      console.info(chalk.cyanBright(boilerPlates.join('\n')));
       throw new Error('boilerplate not found');
     }
     const data = await getBoilerplate();
@@ -68,8 +68,8 @@ async function write() {
   } catch (error) {
     console.error(error);
     if (error.code === 'ENOENT') {
-      console.error(`Could not create boilerplate at path: ${error.path}`);
-      console.error('Make sure the path to the file already exists (Pre-make path of directories to the file)');
+      console.error(chalk.red(`Could not create boilerplate at path: ${chalk.yellow(error.path)}`));
+      console.error(chalk.yellowBright('Make sure the path to the file already exists (Pre-make path of directories to the file)'));
     }
     return false;
   }
