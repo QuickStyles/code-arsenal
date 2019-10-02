@@ -5,6 +5,9 @@ const path = require('path');
 const fs = require('fs').promises;
 const commander = require('commander');
 const chalk = require('chalk');
+const version = require('./package.json').vesrion;
+
+console.log(`Using version: ${version}`);
 
 const BOILERPLATES_PATH = path.join(__dirname, 'boilerplates');
 
