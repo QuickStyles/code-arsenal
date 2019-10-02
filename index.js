@@ -5,7 +5,7 @@ const path = require('path');
 const fs = require('fs').promises;
 const commander = require('commander');
 const chalk = require('chalk');
-const version = require('./package.json').vesrion;
+const { version } = require('./package.json');
 
 const BOILERPLATES_PATH = path.join(__dirname, 'boilerplates');
 
@@ -30,29 +30,21 @@ if (!requestedBoilerplate || !writePath) {
   process.exit();
 }
 
-let extension = '';
-
 async function getBoilerPlates() {
   try {
     const boilerplates = await fs.readdir(BOILERPLATES_PATH);
-    const names = boilerplates.map((boilerplateFileName) => {
-      console.log(boilerplateFileName);
-      const [name, fileExtension] = boilerplateFileName.split('.');
-      extension = fileExtension;
-      return name;
-    });
-    return names;
+    return boilerplates;
   } catch (error) {
     throw new Error(chalk.red('Internal Error: Could not get boilerplates. Please try again'));
   }
 }
 
 function getBoilerplate() {
-  return fs.readFile(path.join(BOILERPLATES_PATH, `${requestedBoilerplate}.${extension}`));
+  return fs.readFile(path.join(BOILERPLATES_PATH, `${requestedBoilerplate}`));
 }
 
 function writeBoilerplate(data) {
-  return fs.writeFile(path.join(process.cwd(), `${writePath}`, `${requestedBoilerplate}.${extension}`), data);
+  return fs.writeFile(path.join(process.cwd(), `${writePath}`, `${requestedBoilerplate}`), data);
 }
 
 
@@ -63,7 +55,7 @@ async function write() {
     dirname: __dirname,
     writePath: writePath,
     requestedBoilerplate: requestedBoilerplate,
-    extension: extension,
+    // extension: extension,
   });
   const boilerPlates = await getBoilerPlates();
   try {
