@@ -1,6 +1,6 @@
 {
   "name": "code-arsenal",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A npx package to generate miscellaneous code",
   "main": "index.js",
   "bin": "index.js",
