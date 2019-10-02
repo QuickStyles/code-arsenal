@@ -50,13 +50,6 @@ function writeBoilerplate(data) {
 
 async function write() {
   console.log(`Using version: ${version}`);
-  console.dir({
-    pcwd: process.cwd(),
-    dirname: __dirname,
-    writePath: writePath,
-    requestedBoilerplate: requestedBoilerplate,
-    // extension: extension,
-  });
   const boilerPlates = await getBoilerPlates();
   try {
     if (!boilerPlates.includes(requestedBoilerplate)) {
