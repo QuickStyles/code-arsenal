@@ -7,8 +7,6 @@ const commander = require('commander');
 const chalk = require('chalk');
 const version = require('./package.json').vesrion;
 
-console.log(`Using version: ${version}`);
-
 const BOILERPLATES_PATH = path.join(__dirname, 'boilerplates');
 
 const program = new commander.Command();
@@ -53,6 +51,12 @@ function getBoilerplate() {
 }
 
 function writeBoilerplate(data) {
+  return fs.writeFile(path.join(process.cwd(), `${writePath}`, `${requestedBoilerplate}.${extension}`), data);
+}
+
+
+async function write() {
+  console.log(`Using version: ${version}`);
   console.dir({
     pcwd: process.cwd(),
     dirname: __dirname,
@@ -60,11 +64,6 @@ function writeBoilerplate(data) {
     requestedBoilerplate: requestedBoilerplate,
     extension: extension,
   });
-  return fs.writeFile(path.join(process.cwd(), `${writePath}`, `${requestedBoilerplate}.${extension}`), data);
-}
-
-
-async function write() {
   const boilerPlates = await getBoilerPlates();
   try {
     if (!boilerPlates.includes(requestedBoilerplate)) {
