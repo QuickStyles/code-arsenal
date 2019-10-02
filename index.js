@@ -36,6 +36,7 @@ async function getBoilerPlates() {
   try {
     const boilerplates = await fs.readdir(BOILERPLATES_PATH);
     const names = boilerplates.map((boilerplateFileName) => {
+      console.log(boilerplateFileName);
       const [name, fileExtension] = boilerplateFileName.split('.');
       extension = fileExtension;
       return name;
