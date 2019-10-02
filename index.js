@@ -50,6 +50,13 @@ function getBoilerplate() {
 }
 
 function writeBoilerplate(data) {
+  console.dir({
+    pcwd: process.cwd(),
+    dirname: __dirname,
+    writePath: writePath,
+    requestedBoilerplate: requestedBoilerplate,
+    extension: extension,
+  });
   return fs.writeFile(path.join(process.cwd(), `${writePath}`, `${requestedBoilerplate}.${extension}`), data);
 }
 
